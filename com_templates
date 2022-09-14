@@ -1,8 +1,0 @@
-jwarship add member \
-    -n sudno \
-    -c Japan \
-    -h DESTROYER \
-    -o 1931-01-01 \
-    -e 1947-02-02 \
-    -b moia_oborona \
-    -r SUNK
