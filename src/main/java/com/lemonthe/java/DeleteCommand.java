@@ -6,24 +6,32 @@ import java.sql.*;
 import java.io.*;
 
 @Command(name = "delete",
-        description = "delete command",
+        description = "Delete battle or battle memeber",
         subcommands = {
-            DeleteShip.class,
-            DeleteBattle.class
+            DeleteBattle.class,
+            DeleteMember.class
         })
 public class DeleteCommand {
 }
 
-@Command(name = "ship", description = "delete ship")
-class DeleteShip implements Runnable {
+@Command(name = "battle", description = "Delete battle")
+class DeleteBattle implements Runnable {
     @Parameters(index = "0")
-    private String shipName;
+    private String battleName;
 
     public void run() {
         try (Connection conn = DataBase.getConnection();
                 Statement st = conn.createStatement()) {
-            String query = "DELETE FROM warships WHERE "
-                + "name = '" + shipName + "';"; 
+            String query;
+            query = "DELETE FROM battle_members "
+                + "WHERE battle_name = '" + battleName + "';"
+                + "DELETE FROM warships "
+                + "WHERE name not in "
+                    + "(SELECT w.name FROM warships w "
+                    + "INNER JOIN battle_members bm "
+                    + "ON w.name = bm.warship_name);"
+                + "DELETE FROM battles "
+                + "WHERE battle_name = '" + battleName + "'";
             int res = st.executeUpdate(query);
             if (res > 0)
                 System.out.println("DELETED");
@@ -36,16 +44,19 @@ class DeleteShip implements Runnable {
     }
 }
 
-@Command(name = "battle", description = "delete battle")
-class DeleteBattle implements Runnable {
+@Command(name = "member", description = "Delete battle member")
+class DeleteMember implements Runnable {
     @Parameters(index = "0")
-    private String battleName;
+    private String memberName;
 
     public void run() {
         try (Connection conn = DataBase.getConnection();
                 Statement st = conn.createStatement()) {
-            String query = "DELETE FROM battles WHERE "
-                + "battle_name = '" + battleName + "';"; 
+            String query;
+            query = "DELETE FROM battle_members "
+                + "WHERE warship_name = '" + memberName +"';"
+                + "DELETE FROM warships "
+                + "WHERE name = '" + memberName + "'";
             int res = st.executeUpdate(query);
             if (res > 0)
                 System.out.println("DELETED");
