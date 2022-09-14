@@ -5,9 +5,6 @@ import java.time.LocalDate;
 import java.sql.*;
 import java.io.*;
 
-//TODO 
-//There is a problem with several battles for one ship
-
 @Command(name = "modify",
         description = "Modify battle or battle memeber",
         subcommands = {
@@ -74,33 +71,9 @@ class ModifyBattle implements Runnable {
             return st.executeUpdate(query);
     }
     private int updateBattleName(Statement st) throws SQLException {
-        //LocalDate bDate;
-        String query;
-        //if (newBattleDate != null) {
-        //    bDate = newBattleDate;
-        //} else {
-        //    query = "SELECT battle_date FROM battles "
-        //        + "WHERE battle_name = '" + battleName + "'";
-        //    ResultSet res = st.executeQuery(query);
-        //    res.next();
-        //    bDate = LocalDate.parse(res.getString(1));
-        //}
-        //System.out.println(bDate);
-        
-        query = "UPDATE battles SET battle_name = '"
+        String query = "UPDATE battles SET battle_name = '"
             + newBattleName + "' WHERE battle_name = '"
             + battleName + "'";
-
-        
-        //query = "BEGIN;"
-        //    + "INSERT INTO battles VALUES ('" + newBattleName + "', '"
-        //    + bDate + "');"
-        //    + "UPDATE battle_members "
-        //    + "SET battle_name = '" + newBattleName
-        //    + "' WHERE battle_name = '" + battleName + "';"
-        //    + "DELETE FROM battles WHERE battle_name = '"
-        //    + battleName + "';"
-        //    + "COMMIT;";
         return st.executeUpdate(query);
     }
 }

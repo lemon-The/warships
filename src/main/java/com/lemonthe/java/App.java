@@ -13,6 +13,6 @@ import picocli.CommandLine.Command;
         })
 public class App {
     public static void main(String[] args) {
-        System.out.println(new CommandLine(new App()).execute(args));
+        new CommandLine(App.class);
     }
 }
