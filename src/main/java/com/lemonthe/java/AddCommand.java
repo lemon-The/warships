@@ -8,13 +8,15 @@ import java.time.*;
 
 @Command(name = "add",
         description = "Add new battle or battle memeber",
+        mixinStandardHelpOptions = true,
         subcommands = {
             AddBattle.class,
             AddMember.class
         })
 public class AddCommand {}
 
-@Command(name = "battle", description = "Add battle")
+@Command(name = "battle", mixinStandardHelpOptions = true,
+        description = "Add battle")
 class AddBattle implements Runnable {
     @Option(names = {"-n", "--name"}, required = true)
     private String battleName;
@@ -39,7 +41,8 @@ class AddBattle implements Runnable {
     } 
 }
 
-@Command(name = "member", description = "Add battle member")
+@Command(name = "member", mixinStandardHelpOptions = true,
+        description = "Add battle member")
 class AddMember implements Runnable {
     @Option(names = {"-n", "--name"}, required = true)
     private String shipName;

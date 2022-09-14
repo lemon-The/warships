@@ -1,0 +1,29 @@
+Command line parser
+===================
+This project has made for educational purposes. You may do whatever you
+want with it.
+
+Description
+===========
+Command line application for sea battles and warships management
+
+Preparations
+============
+Before running the program you need to make some settings:
+    1) Create postgres data base and run commands from ddl.sql file to
+        create tables
+    2) Run commands from dml.sql to populate data base
+    3) In './jdbc.properties' file enter your data base name and
+        data base user and his password
+    4) In 'start.sh' script enter path to .jar
+    5) Run 'start.sh'
+'jdbc.properties' file is needed to get access to your postgres data base.
+And 'start.sh' enables autocompletion (to get more information about
+autocompletion see: 'https://picocli.info/autocomplete.html')
+
+Usage
+=====
+You can see/manipulate battles and battle members information by using
+add/delete/modify/show subcommands (use --help for more information).
+Example:
+    warships show members list

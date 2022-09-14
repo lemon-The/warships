@@ -7,6 +7,7 @@ import java.io.*;
 
 @Command(name = "delete",
         description = "Delete battle or battle memeber",
+        mixinStandardHelpOptions = true,
         subcommands = {
             DeleteBattle.class,
             DeleteMember.class
@@ -14,7 +15,8 @@ import java.io.*;
 public class DeleteCommand {
 }
 
-@Command(name = "battle", description = "Delete battle")
+@Command(name = "battle", mixinStandardHelpOptions = true,
+        description = "Delete battle")
 class DeleteBattle implements Runnable {
     @Parameters(index = "0")
     private String battleName;
@@ -44,7 +46,8 @@ class DeleteBattle implements Runnable {
     }
 }
 
-@Command(name = "member", description = "Delete battle member")
+@Command(name = "member", mixinStandardHelpOptions = true,
+        description = "Delete battle member")
 class DeleteMember implements Runnable {
     @Parameters(index = "0")
     private String memberName;

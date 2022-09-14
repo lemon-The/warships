@@ -7,13 +7,15 @@ import java.io.*;
 
 @Command(name = "modify",
         description = "Modify battle or battle memeber",
+        mixinStandardHelpOptions = true,
         subcommands = {
             ModifyBattle.class
         })
 public class ModifyCommand {}
 
 
-@Command(name = "battle", description = "Modify battle")
+@Command(name = "battle", mixinStandardHelpOptions = true,
+        description = "Modify battle")
 class ModifyBattle implements Runnable {
     @Option(names = {"-n", "--name"})
     private String newBattleName = null;
@@ -78,7 +80,8 @@ class ModifyBattle implements Runnable {
     }
 }
 
-@Command(name = "member", description = "Modify battle memeber")
+@Command(name = "member", mixinStandardHelpOptions = true,
+        description = "Modify battle memeber")
 class ModifyMemeber implements Runnable {
     @Option(names = {"-n", "--name"}, required = true)
     private String newShipName = null;

@@ -7,6 +7,7 @@ import java.io.*;
 
 @Command(name = "show",
         description = "Show battle(s) or battle memeber(s)",
+        mixinStandardHelpOptions = true,
         subcommands = {
             ShowBattles.class,
             ShowMember.class
@@ -14,7 +15,8 @@ import java.io.*;
 public class ShowCommand {
 }
 
-@Command(name = "battle", description = "Show battle. To show all battles use 'list'")
+@Command(name = "battle", mixinStandardHelpOptions = true,
+        description = "Show battle. To show all battles use 'list'")
 class ShowBattles implements Runnable {
     @Parameters(index = "0")
     public String battleName = "list";
@@ -48,7 +50,8 @@ class ShowBattles implements Runnable {
     }
 }
 
-@Command(name = "member", description = "Show battle member. To show all members use 'list'")
+@Command(name = "member", mixinStandardHelpOptions = true,
+        description = "Show battle member. To show all members use 'list'")
 class ShowMember implements Runnable {
     @Parameters(index = "0")
     public String shipName = "list";
